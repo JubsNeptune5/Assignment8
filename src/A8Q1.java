@@ -34,20 +34,26 @@ public class A8Q1 extends JComponent {
     //Variable for iris size
     int irisS = 30;
     //Variable for puple size
-    int pupleS = 40;
+    int pupleS = 20;
     //Crerate variables to move bat ears up
     int baty1 = 250;
     int baty2 = 56;
-    int batx1 = 0;
-    int batx2 = 70;
-    int batx3 = 60;
+    int batx1 = 30;
+    int batxA1 = 330;
+    int batx2 = 30;
+    int batxA2 = 330;
     //create variables for batman cowl
     int browW = 0;
     int browH = 0;
-    
     //Variables for mouth
     int smileH = 0;
     int smileW = 0;
+    //Variables for triangle nose
+    int nosex1 = 0;
+    int nosex2 = 0;
+    int nosex3 = 0;
+    int nosey1 = 0;
+    int nosey2 = 0;
 
     // GAME VARIABLES END HERE   
     // drawing of the game happens in here
@@ -64,11 +70,12 @@ public class A8Q1 extends JComponent {
         //BATMAN
         g.setColor(Color.BLACK);
         //Create Arrays for the 
-        int[] xPoints = {batx3, batx2, batx1};
-        int[] yPoints = {baty1, baty2, baty1};
+        int[] xPoints = {batx2, batx2,batx1};
+        int[] yPoints = {baty2, baty1, baty1};
         g.fillPolygon(xPoints, yPoints, 3);
-        int[] xPoints2 = {batx3 + 370, batx2 + 370, batx1 + 370};
-        g.fillPolygon(xPoints2, yPoints, 3);
+        int[] xPoints2 = {batxA1,batxA2, batxA2};
+        int[] yPoints2 = {baty1,baty2, baty1};
+        g.fillPolygon(xPoints2, yPoints2, 3);
 
         //FACE
         //Set that as colour for my face
@@ -126,11 +133,12 @@ public class A8Q1 extends JComponent {
         g.fillRect(100, 115, browW, browH);
         g.fillRect(250, 115, browW, browH);
 
-        //Create grey outline for nose
+        //Create grey outline for nose in cowl
         g.setColor(Color.DARK_GRAY);
-        int x[] = {190, 265, 230};
-        int y[] = {325, 325, 350};
+        int x[] = {nosex1, nosex2, nosex3};
+        int y[] = {nosey1, nosey1, nosey2};
         g.drawPolygon(x, y, 3);
+
         //MOUTH
         //Set color for lips
         g.setColor(lips);
@@ -157,6 +165,8 @@ public class A8Q1 extends JComponent {
         long startTime;
         long deltaTime;
 
+        long animDelay = System.currentTimeMillis() + 1000;
+
         preSetup();
 
         // the main game loop section
@@ -169,37 +179,74 @@ public class A8Q1 extends JComponent {
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
             //Make bangs on person turn into batman cowl
-            if (bangH < 360) {
+            if (startTime > animDelay && bangH < 360) {
                 bangH = bangH + 5;
             }
-
-            //Make eyes whitye like cowl
-            if (pupleS > 0 || irisS > 0) {
+//Do rest of animations when cowl is fully formed
+            //Make eyes white like cowl
+            if (startTime > animDelay && pupleS > 0) {
                 pupleS--;
+            }
+
+            if (startTime > animDelay && irisS > 0) {
                 irisS--;
             }
+
             //Increase hieght on the bat ears
-            if (baty2 > 0) {
+            if (startTime > animDelay && baty2 > 0) {
                 baty2--;
-                baty1--;
             }
+
+            if (startTime > animDelay && batx1<100) {
+                batx1++;
+            }
+            if (startTime > animDelay && batx2 > 0){
+                batx2--;
+            }
+           
+            if (startTime > animDelay && batxA2 < 445) {
+                batxA2++;
+            }
+
             //Add rectangles  to person to make eyes less creepy
-            if(browW < 100){
+            if (startTime > animDelay && browW
+                    < 100) {
                 browW++;
             }
-            if(browH < 50){
+            if (startTime > animDelay && browH
+                    < 50) {
                 browH++;
             }
-
-
+            //Animate to increase the nose on cowl
+            if (startTime > animDelay && nosex1
+                    < 190) {
+                nosex1++;
+            }
+            if (startTime > animDelay && nosex2
+                    < 265) {
+                nosex2++;
+            }
+            if (startTime > animDelay && nosex3
+                    < 230) {
+                nosex3++;
+            }
+            if (startTime > animDelay && nosey1
+                    < 325) {
+                nosey1++;
+            }
+            if (startTime > animDelay && nosey2
+                    < 350) {
+                nosey2++;
+            }
 
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
             repaint();
-
             // SLOWS DOWN THE GAME BASED ON THE FRAMERATE ABOVE
             // USING SOME SIMPLE MATH
             deltaTime = System.currentTimeMillis() - startTime;
+
+
             try {
                 if (deltaTime > desiredTime) {
                     //took too much time, don't wait
@@ -211,6 +258,7 @@ public class A8Q1 extends JComponent {
             } catch (Exception e) {
             };
         }
+    
     }
 
     /**
@@ -240,6 +288,10 @@ public class A8Q1 extends JComponent {
 
         // starts the game loop
         game.run();
+
+
+
+
     }
 
     // Used to implement any of the Mouse Actions
@@ -261,7 +313,7 @@ public class A8Q1 extends JComponent {
         }
     }
 
-    // Used to implements any of the Keyboard Actions
+// Used to implements any of the Keyboard Actions
     private static class Keyboard extends KeyAdapter {
         // if a key has been pressed down
 
