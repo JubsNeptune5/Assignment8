@@ -54,6 +54,9 @@ public class A8Q1 extends JComponent {
     int nosex3 = 0;
     int nosey1 = 0;
     int nosey2 = 0;
+    //Variable to move tie
+    int tieY = 400;
+    //Variable to move bat signal
 
     // GAME VARIABLES END HERE   
     // drawing of the game happens in here
@@ -70,11 +73,11 @@ public class A8Q1 extends JComponent {
         //BATMAN
         g.setColor(Color.BLACK);
         //Create Arrays for the 
-        int[] xPoints = {batx2, batx2,batx1};
+        int[] xPoints = {batx2, batx2, batx1};
         int[] yPoints = {baty2, baty1, baty1};
         g.fillPolygon(xPoints, yPoints, 3);
-        int[] xPoints2 = {batxA1,batxA2, batxA2};
-        int[] yPoints2 = {baty1,baty2, baty1};
+        int[] xPoints2 = {batxA1, batxA2, batxA2};
+        int[] yPoints2 = {baty1, baty2, baty1};
         g.fillPolygon(xPoints2, yPoints2, 3);
 
         //FACE
@@ -82,6 +85,20 @@ public class A8Q1 extends JComponent {
         g.setColor(mySkin);
         //Create oval for my face
         g.fillOval(50, 50, 350, 400);
+
+        //SHIRT
+        //Create shirt
+        g.setColor(Color.BLACK);
+        g.fillRect(-100, 400, 600, 700);
+        //create tie
+        g.setColor(Color.RED);
+        g.fillRect(200, tieY, 50, 200);
+        
+        //BATSIGNAL
+        //create oval
+        g.setColor(Color.YELLOW);
+        g.fillOval(125, 475, 200, 100);
+        
 
         //NOSE
         //Set colour for the outline of the face
@@ -182,7 +199,10 @@ public class A8Q1 extends JComponent {
             if (startTime > animDelay && bangH < 360) {
                 bangH = bangH + 5;
             }
-//Do rest of animations when cowl is fully formed
+             //Move the tie down and the signal up
+            if (startTime > animDelay && tieY < 1000) {
+                tieY++;
+            }
             //Make eyes white like cowl
             if (startTime > animDelay && pupleS > 0) {
                 pupleS--;
@@ -197,46 +217,44 @@ public class A8Q1 extends JComponent {
                 baty2--;
             }
 
-            if (startTime > animDelay && batx1<100) {
+            if (startTime > animDelay && batx1 < 100) {
                 batx1++;
             }
-            if (startTime > animDelay && batx2 > 0){
+            if (startTime > animDelay && batx2 > 5) {
                 batx2--;
             }
-           
+
             if (startTime > animDelay && batxA2 < 445) {
                 batxA2++;
             }
 
             //Add rectangles  to person to make eyes less creepy
-            if (startTime > animDelay && browW
-                    < 100) {
+            if (startTime > animDelay && browW < 100) {
                 browW++;
             }
-            if (startTime > animDelay && browH
-                    < 50) {
+            if (startTime > animDelay && browH < 50) {
                 browH++;
             }
             //Animate to increase the nose on cowl
-            if (startTime > animDelay && nosex1
-                    < 190) {
+            if (startTime > animDelay && nosex1 < 190) {
                 nosex1++;
             }
-            if (startTime > animDelay && nosex2
-                    < 265) {
+            if (startTime > animDelay && nosex2 < 265) {
                 nosex2++;
             }
-            if (startTime > animDelay && nosex3
-                    < 230) {
+            if (startTime > animDelay && nosex3 < 230) {
                 nosex3++;
             }
-            if (startTime > animDelay && nosey1
-                    < 325) {
+            if (startTime > animDelay && nosey1 < 325) {
                 nosey1++;
             }
-            if (startTime > animDelay && nosey2
-                    < 350) {
+            if (startTime > animDelay && nosey2 < 350) {
                 nosey2++;
+            }
+
+            //Move the tie down and the signal up
+            if (startTime > animDelay && tieY < 1000) {
+                tieY++;
             }
 
             // GAME LOGIC ENDS HERE 
@@ -258,7 +276,7 @@ public class A8Q1 extends JComponent {
             } catch (Exception e) {
             };
         }
-    
+
     }
 
     /**
