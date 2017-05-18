@@ -16,8 +16,8 @@ import java.awt.event.MouseEvent;
 public class BatSignal extends JComponent {
 
     // Height and Width of our game
-    static final int WIDTH = 800;
-    static final int HEIGHT = 600;
+    static final int WIDTH = 200;
+    static final int HEIGHT = 100;
 
     // sets the framerate and delay for our game
     // you just need to select an approproate framerate
@@ -40,6 +40,18 @@ public class BatSignal extends JComponent {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE 
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, 200, 100);
+       
+        
+        g.setColor(Color.YELLOW);
+        g.fillArc(20, -10, 20, 20, 180, 180);
+        g.fillArc(50, -10, 20, 20, 180, 180);
+        
+        g.fillArc(-25, 5, 40, 40, 180, 360);
+        g.fillArc(0, 30, 40, 40, 180, 360);
+        g.fillArc(70, 5, 40, 40, 180, 360);
+        g.fillArc(45, 30, 40, 40, 180, 360);
         // GAME DRAWING ENDS HERE
     }
 

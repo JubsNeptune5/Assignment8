@@ -57,6 +57,12 @@ public class A8Q1 extends JComponent {
     //Variable to move tie
     int tieY = 400;
     //Variable to move bat signal
+    int simY1 = 1475;
+    int simY2 = 1505;
+    int simY3 = 1495;
+    int simY4 = 1500;
+    int simY5 = 1525;
+    int simY6 = 1530;
 
     // GAME VARIABLES END HERE   
     // drawing of the game happens in here
@@ -93,12 +99,24 @@ public class A8Q1 extends JComponent {
         //create tie
         g.setColor(Color.RED);
         g.fillRect(200, tieY, 50, 200);
-        
+
         //BATSIGNAL
         //create oval
         g.setColor(Color.YELLOW);
         g.fillOval(125, 475, 200, 100);
-        
+        g.setColor(Color.BLACK);
+        g.fillRect(160, 505, 100, 50);
+
+        //Create ovals for the top
+        g.setColor(Color.YELLOW);
+        g.fillArc(195, 495, 20, 20, 180, 180);
+        g.fillArc(225, 495, 20, 20, 180, 180);
+        //create ovals fopr wings
+        g.fillArc(140, 500, 40, 40, 180, 360);
+        g.fillArc(175, 525, 45, 45, 180, 360);
+        g.fillArc(255, 500, 40, 40, 180, 360);
+        g.fillArc(220, 525, 45, 45, 180, 360);
+        g.fillRect(160, 530, 20, 30);
 
         //NOSE
         //Set colour for the outline of the face
@@ -199,7 +217,7 @@ public class A8Q1 extends JComponent {
             if (startTime > animDelay && bangH < 360) {
                 bangH = bangH + 5;
             }
-             //Move the tie down and the signal up
+            //Move the tie down and the signal up
             if (startTime > animDelay && tieY < 1000) {
                 tieY++;
             }
@@ -256,6 +274,8 @@ public class A8Q1 extends JComponent {
             if (startTime > animDelay && tieY < 1000) {
                 tieY++;
             }
+            
+            //Move bat signal u
 
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
