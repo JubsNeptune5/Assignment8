@@ -85,14 +85,7 @@ public class A8Q1 extends JComponent {
         int[] xPoints2 = {batxA1, batxA2, batxA2};
         int[] yPoints2 = {baty1, baty2, baty1};
         g.fillPolygon(xPoints2, yPoints2, 3);
-
-        //FACE
-        //Set that as colour for my face
-        g.setColor(mySkin);
-        //Create oval for my face
-        g.fillOval(50, 50, 350, 400);
-       //Fill in the line where there shouldn't be
-      
+        
         //SHIRT
         //Create shirt
         g.setColor(Color.BLACK);
@@ -100,11 +93,17 @@ public class A8Q1 extends JComponent {
         //create tie
         g.setColor(Color.RED);
         g.fillRect(200, tieY, 50, 200);
+        
+        //FACE
+        //Set that as colour for my face
+        g.setColor(mySkin);
+        //Create oval for my face
+        g.fillOval(50, 50, 350, 400);
 
         //BATSIGNAL
         //create oval
         g.setColor(Color.YELLOW);
-        g.fillOval(125, simY1, 200, 100);
+        g.fillOval(120, simY1, 200, 100);
         g.setColor(Color.BLACK);
         g.fillRect(160, simY2, 100, 50);
 
