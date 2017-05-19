@@ -57,12 +57,12 @@ public class A8Q1 extends JComponent {
     //Variable to move tie
     int tieY = 400;
     //Variable to move bat signal
-    int simY1 = 1475;
-    int simY2 = 1505;
-    int simY3 = 1495;
-    int simY4 = 1500;
-    int simY5 = 1525;
-    int simY6 = 1530;
+    int simY1 = 700;
+    int simY2 = 700;
+    int simY3 = 700;
+    int simY4 = 700;
+    int simY5 = 700;
+    int simY6 = 700;
 
     // GAME VARIABLES END HERE   
     // drawing of the game happens in here
@@ -91,7 +91,8 @@ public class A8Q1 extends JComponent {
         g.setColor(mySkin);
         //Create oval for my face
         g.fillOval(50, 50, 350, 400);
-
+       //Fill in the line where there shouldn't be
+      
         //SHIRT
         //Create shirt
         g.setColor(Color.BLACK);
@@ -103,20 +104,20 @@ public class A8Q1 extends JComponent {
         //BATSIGNAL
         //create oval
         g.setColor(Color.YELLOW);
-        g.fillOval(125, 475, 200, 100);
+        g.fillOval(125, simY1, 200, 100);
         g.setColor(Color.BLACK);
-        g.fillRect(160, 505, 100, 50);
+        g.fillRect(160, simY2, 100, 50);
 
         //Create ovals for the top
         g.setColor(Color.YELLOW);
-        g.fillArc(195, 495, 20, 20, 180, 180);
-        g.fillArc(225, 495, 20, 20, 180, 180);
+        g.fillArc(195, simY3, 20, 20, 180, 180);
+        g.fillArc(225, simY3, 20, 20, 180, 180);
         //create ovals fopr wings
-        g.fillArc(140, 500, 40, 40, 180, 360);
-        g.fillArc(175, 525, 45, 45, 180, 360);
-        g.fillArc(255, 500, 40, 40, 180, 360);
-        g.fillArc(220, 525, 45, 45, 180, 360);
-        g.fillRect(160, 530, 20, 30);
+        g.fillArc(140, simY4, 40, 40, 180, 360);
+        g.fillArc(175, simY5, 45, 45, 180, 360);
+        g.fillArc(255, simY4, 40, 40, 180, 360);
+        g.fillArc(220, simY5, 45, 45, 180, 360);
+        g.fillRect(160, simY5, 20, 30);
 
         //NOSE
         //Set colour for the outline of the face
@@ -127,22 +128,30 @@ public class A8Q1 extends JComponent {
         g.drawOval(225, 301, 50, 50);
         //Set colour for filling unwanted lines
         g.setColor(mySkin);
-
-        //Fill in the line where there shouldn't be
+          //Fill in the line where there shouldn't be
+        g.setColor(mySkin);
         g.fillRect(200, 191, 30, 30);
-        //g.setColor(Color.RED);
         g.fillRect(200, 306, 55, 44);
-
+        
+        //Create arc for hair to turn into mask
+        g.setColor(Color.BLACK);
+        g.fillArc(50, 51, 350, 400, 40, bangH);
+        
+        //Create grey outline for nose in cowl
+        g.setColor(Color.DARK_GRAY);
+        int x[] = {nosex1, nosex2, nosex3};
+        int y[] = {nosey1, nosey1, nosey2};
+        g.drawPolygon(x, y, 3);
         //HAIR
         //set colour for hair
         g.setColor(Color.BLACK);
-        //Create arc for hair
-        g.fillArc(50, 51, 350, 400, 40, bangH);
         g.fillOval(50, 51, 350, 100);
         //Create side of hair
         g.fillOval(350, 101, 100, 200);
         g.fillOval(1, 101, 100, 200);
-
+        
+      
+        
         //EYES
         //Set colour for my eyes as white
         g.setColor(Color.WHITE);
@@ -168,11 +177,7 @@ public class A8Q1 extends JComponent {
         g.fillRect(100, 115, browW, browH);
         g.fillRect(250, 115, browW, browH);
 
-        //Create grey outline for nose in cowl
-        g.setColor(Color.DARK_GRAY);
-        int x[] = {nosex1, nosex2, nosex3};
-        int y[] = {nosey1, nosey1, nosey2};
-        g.drawPolygon(x, y, 3);
+        
 
         //MOUTH
         //Set color for lips
@@ -200,7 +205,7 @@ public class A8Q1 extends JComponent {
         long startTime;
         long deltaTime;
 
-        long animDelay = System.currentTimeMillis() + 1000;
+        long animDelay = System.currentTimeMillis() + 2000;
 
         preSetup();
 
@@ -214,9 +219,10 @@ public class A8Q1 extends JComponent {
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
             //Make bangs on person turn into batman cowl
-            if (startTime > animDelay && bangH < 360) {
+            if (startTime > animDelay && bangH < 365) {
                 bangH = bangH + 5;
             }
+            if(bangH >=360){
             //Move the tie down and the signal up
             if (startTime > animDelay && tieY < 1000) {
                 tieY++;
@@ -245,7 +251,22 @@ public class A8Q1 extends JComponent {
             if (startTime > animDelay && batxA2 < 445) {
                 batxA2++;
             }
-
+            //Animate to increase the nose on cowl
+            if (startTime > animDelay && nosex1 < 190) {
+                nosex1=nosex1+190;
+            }
+            if (startTime > animDelay && nosex2 < 265) {
+                nosex2=nosex2+265;
+            }
+            if (startTime > animDelay && nosex3 < 230) {
+                nosex3=nosex3+230;
+            }
+            if (startTime > animDelay && nosey1 < 325) {
+                nosey1=nosey1+325;
+            }
+             if (startTime > animDelay && nosey2 < 100) {
+                nosey2=nosey2+100;
+            }
             //Add rectangles  to person to make eyes less creepy
             if (startTime > animDelay && browW < 100) {
                 browW++;
@@ -253,30 +274,33 @@ public class A8Q1 extends JComponent {
             if (startTime > animDelay && browH < 50) {
                 browH++;
             }
-            //Animate to increase the nose on cowl
-            if (startTime > animDelay && nosex1 < 190) {
-                nosex1++;
-            }
-            if (startTime > animDelay && nosex2 < 265) {
-                nosex2++;
-            }
-            if (startTime > animDelay && nosex3 < 230) {
-                nosex3++;
-            }
-            if (startTime > animDelay && nosey1 < 325) {
-                nosey1++;
-            }
-            if (startTime > animDelay && nosey2 < 350) {
-                nosey2++;
-            }
+            
 
             //Move the tie down and the signal up
             if (startTime > animDelay && tieY < 1000) {
                 tieY++;
             }
-            
-            //Move bat signal u
 
+            //Move bat signal to the shirt
+            if (startTime > animDelay && simY1 > 475) {
+                simY1--;
+            }
+            if (startTime > animDelay && simY2 > 505) {
+                simY2--;
+            }
+            if (startTime > animDelay && simY3 > 495) {
+                simY3--;
+            }
+            if (startTime > animDelay && simY4 > 500) {
+                simY4--;
+            }
+            if (startTime > animDelay && simY5 > 525) {
+                simY5--;
+            }
+            if (startTime > animDelay && simY6 > 530) {
+                simY6--;
+            }
+            }
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
             repaint();
