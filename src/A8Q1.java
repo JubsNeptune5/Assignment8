@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- *
+ *Bruce Wayne to BATMAN
  * @author laveh2107
  */
 public class A8Q1 extends JComponent {
